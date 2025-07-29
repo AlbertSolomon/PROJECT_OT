@@ -14,4 +14,10 @@ class OT:
         source_sheet = self.workbook[starter_workbook]
         new_sheet = self.workbook.copy_worksheet(source_sheet)
         new_sheet.title = self.sheetname
-        print(f"{new_sheet.title} was created ")
+        print(f"{ new_sheet.title } was created ")
+
+    def delete_worksheet(self, worksheet_name):
+        if worksheet_name in self.workbook.sheetnames:
+            worksheet = self.workbook[worksheet_name]
+            self.workbook.remove(worksheet)
+            print(f"{ worksheet } has been deleted...")
