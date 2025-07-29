@@ -21,3 +21,9 @@ class OT:
             worksheet = self.workbook[worksheet_name]
             self.workbook.remove(worksheet)
             print(f"{ worksheet } has been deleted...")
+
+    def delete_copies(self):
+        for worksheet_name in self.workbook.sheenames:
+            if "Copy" in worksheet_name or any(digit.isdigit() for digit in worksheet_name)
+                copy = self.workbook[worksheet_name]
+                self.workbook.remove(copy)
