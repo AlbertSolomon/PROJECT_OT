@@ -27,3 +27,6 @@ class OT:
             if "Copy" in worksheet_name or any(digit.isdigit() for digit in worksheet_name):
                 copy = self.workbook[worksheet_name]
                 self.workbook.remove(copy)
+
+    def insert_ot(self):
+        pass 
