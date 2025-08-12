@@ -30,10 +30,10 @@ class OT:
                 copy = self.workbook[worksheet_name]
                 self.workbook.remove(copy)
 
-    def insert_ot(self, day:str, start_time: float, end_time:float) -> dict:
+    '''def insert_ot(self, day:str, start_time: float, end_time:float) -> dict:
         ot = {'day':day, 'start': start_time, 'end': end_time}
 
-        return ot
+        return ot'''
     
     def insert_ot_json(self, ot_day: dict):
         if type(ot_day) == dict:
