@@ -12,7 +12,7 @@ print(delisting(workbook.sheetnames))
 
 def command_prompter() -> list:
     """This function only exists for testing purposes """
-
+    print(type(overtime_month))
     ot_details: list= []
     month = input("enter month for recording/retrieving ovetime details:", )
     new_sheet = input("enter new sheet name:")
