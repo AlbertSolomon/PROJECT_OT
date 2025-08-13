@@ -1,4 +1,3 @@
-import json
 from typing import Union
 class OT:
     def __init__(self, workbook, sheetname):
