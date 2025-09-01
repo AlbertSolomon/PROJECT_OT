@@ -209,3 +209,6 @@ __marimo__/
 # TEMPLATE DOCUMENT
 template/*
 final/*
+
+# TEMPORARY FILES
+src/temp.py
