@@ -3,6 +3,7 @@ class OT:
     def __init__(self, workbook, sheetname):
         self.workbook = workbook
         self.sheetname = sheetname
+        self.sheet = self.workbook[self.sheetname]
 
     def finder(self) -> bool:
         for name in self.workbook.sheetnames:
@@ -37,10 +38,14 @@ class OT:
     def insert_position(self) -> str:
         # TOTAL is found in column A, hence we need to search for in it
         search_point = 'TOTAL'
-        sheet = self.workbook[self.sheetname]
-        for cell in sheet['A']:
+        #sheet = self.workbook[self.sheetname]
+        for cell in self.sheet['A']:
             if cell.value == search_point:
+                print(cell.coordinate)
                 return cell.coordinate
+            
+    def merger(self, start_point, end_point):
+        pass 
         
     def insert_ot_json(self, ot_day: dict):
         if type(ot_day) == dict:
