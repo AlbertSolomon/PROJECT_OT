@@ -34,6 +34,14 @@ class OT:
 
         return ot'''
     
+    def insert_position(self) -> str:
+        # TOTAL is found in column A, hence we need to search for in it
+        search_point = 'TOTAL'
+        sheet = self.workbook[self.sheetname]
+        for cell in sheet['A']:
+            if cell.value == search_point:
+                return cell.coordinate
+        
     def insert_ot_json(self, ot_day: dict):
         if type(ot_day) == dict:
             print("printing dict:")
