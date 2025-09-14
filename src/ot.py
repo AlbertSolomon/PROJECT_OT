@@ -45,7 +45,7 @@ class OT:
                 return cell.coordinate
             
     def merger(self, start_point, end_point):
-        pass 
+        self.sheet.merge_cells(f'{ start_point }:{ end_point }') 
         
     def insert_ot_json(self, ot_day: dict):
         if type(ot_day) == dict:
