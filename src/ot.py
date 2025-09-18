@@ -48,8 +48,9 @@ class OT:
         self.sheet.merge_cells(f'{ start_point }:{ end_point }')
 
     def insert_row(self, insert_position):
-        state = insert_position()
+        state = insert_position() # rememeber that this is a string, and an int is required
         self.sheet.insert_rows(state)
+        # merging cells here and job desription insertion 
         
     def insert_ot_json(self, ot_day: dict):
         if type(ot_day) == dict:
