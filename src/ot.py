@@ -35,22 +35,34 @@ class OT:
 
         return ot'''
     
-    def insert_position(self) -> str:
-        # TOTAL is found in column A, hence we need to search for in it
+    def insert_point_location(self) -> str:
+        # TOTAL is found in column A, 
         search_point = 'TOTAL'
-        #sheet = self.workbook[self.sheetname]
         for cell in self.sheet['A']:
             if cell.value == search_point:
-                print(cell.coordinate)
+                # print(cell.coordinate)
                 return cell.coordinate
             
     def merger(self, start_point, end_point):
         self.sheet.merge_cells(f'{ start_point }:{ end_point }')
 
-    def insert_row(self, insert_position):
-        state = insert_position() # rememeber that this is a string, and an int is required
-        self.sheet.insert_rows(state)
+    def insert_row(self):
+        state = self.insert_point_location() # rememeber that this is a string, and an int is required
+        print(f"first state is { state }")
+        for character in state: # or i could use the built in strp function, but i guess you are the smart one 😒
+            if character == 'A':
+                continue
+            else:
+                print(character)
+                state = character
+        
+        self.sheet.insert_rows(int(state))
+        print(f"the state after insertion is {state}")
         # merging cells here and job desription insertion 
+        '''TODO from C to E'''
+        C = 'C' + state
+        E = 'E' + state
+        #self.merger()
         
     def insert_ot_json(self, ot_day: dict):
         if type(ot_day) == dict:
