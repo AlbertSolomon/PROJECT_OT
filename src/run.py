@@ -1,26 +1,30 @@
-
 from openpyxl import Workbook, load_workbook
 from ot import OT
-from lang import path, overtime_month, delisting, settings_path
+from lang import path, overtime_month, delisting, settings_path, saved_file_location
 import json
+from datetime import date
+import re
 
+#saved_file_location()
 workbook = load_workbook(path)
 workbook.active
 
-print(type(workbook.sheetnames))
-print(delisting(workbook.sheetnames))
+#print(type(workbook.sheetnames))
+#print(workbook.sheetnames)
 
 def command_prompter() -> list:
     """This function only exists for testing purposes """
-    print(type(overtime_month))
     ot_details: list= []
     month = input("enter month for recording/retrieving ovetime details:", )
-    new_sheet = input("enter new sheet name:")
+    sheet = input("enter sheet name:")
+    default_sheet = delisting(workbook.sheetnames)
     ot_details.append(month)
-    ot_details.append(new_sheet)
+
+    ot_details.append(sheet if sheet !='' else default_sheet)
+    OT(workbook, sheet if sheet !='' else default_sheet).insert_row()
+    print(date.today())
     return ot_details
 
-print(command_prompter())
-
-workbook.save('./final/june.xlsx')
-#workbook.save(f"./final/{ overtime_month }.xlsx")
+command_prompter()
+# workbook.save('./final/june.xlsx')
+workbook.save(f"./final/{ overtime_month }.xlsx")

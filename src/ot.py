@@ -42,6 +42,9 @@ class OT:
             if cell.value == search_point:
                 # print(cell.coordinate)
                 return cell.coordinate
+    
+    def search_job_description(self):
+        pass
             
     def merger(self, start_point, end_point):
         self.sheet.merge_cells(f'{ start_point }:{ end_point }')
@@ -49,7 +52,7 @@ class OT:
     def insert_row(self):
         state = self.insert_point_location() # rememeber that this is a string, and an int is required
         print(f"first state is { state }")
-        for character in state: # or i could use the built in strp function, but i guess you are the smart one 😒
+        for character in state: # or i could use the built in strip function, but i guess you are the smart one 😒
             if character == 'A':
                 continue
             else:
@@ -62,7 +65,9 @@ class OT:
         '''TODO from C to E'''
         C = 'C' + state
         E = 'E' + state
-        #self.merger()
+
+        #self.sheet[C] = "JOb discription"
+        #self.merger(C, E)
         
     def insert_ot_json(self, ot_day: dict):
         if type(ot_day) == dict:
