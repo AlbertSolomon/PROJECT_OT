@@ -1,4 +1,3 @@
-from typing import Union
 class OT:
     def __init__(self, workbook, sheetname):
         self.workbook = workbook
@@ -16,13 +15,13 @@ class OT:
         source_sheet = self.workbook[starter_workbook]
         new_sheet = self.workbook.copy_worksheet(source_sheet)
         new_sheet.title = self.sheetname
-        print(f"{ new_sheet.title } was created ")
+        #print(f"{ new_sheet.title } was created ")
 
     def delete_worksheet(self, worksheet_name):
         if worksheet_name in self.workbook.sheetnames:
             worksheet = self.workbook[worksheet_name]
             self.workbook.remove(worksheet)
-            print(f"{ worksheet } has been deleted...")
+            #print(f"{ worksheet } has been deleted...")
 
     def delete_copies(self):
         for worksheet_name in self.workbook.sheenames:
@@ -54,16 +53,16 @@ class OT:
 
     def insert_row(self):
         cell_coordinate = self.insert_point_location() # rememeber that this is a string, and an int is required
-        print(f"first state is { cell_coordinate }")
+        #print(f"first state is { cell_coordinate }")
         for character in cell_coordinate: # or i could use the built in strip function, but i guess you are the smart one 😒
             if character == 'A':
                 continue
             else:
-                print(character)
+                #print(character)
                 cell_coordinate = character
         
         self.sheet.insert_rows(int(cell_coordinate))
-        print(f"the state after insertion is {cell_coordinate}")
+        #print(f"the state after insertion is {cell_coordinate}")
         # merging cells here and job desription insertion 
         '''TODO from C to E'''
         C = 'C' + cell_coordinate
