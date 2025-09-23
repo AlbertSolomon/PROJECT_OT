@@ -45,8 +45,14 @@ class OT:
                 # print(cell.coordinate)
                 return cell.coordinate
     
-    def search_job_description(self):
-        pass
+    def search_job_description(self, job_title):
+        row_coordinate = self.insert_point_location()
+        row_number = int(row_coordinate.strip("A")) + 1
+        cell_coordinate = 'F' + row_number
+        
+        for self.sheet[cell_coordinate] in job_title:
+            return True
+
             
     def merger(self, start_point, end_point):
         self.sheet.merge_cells(f'{ start_point }:{ end_point }')
