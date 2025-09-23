@@ -51,3 +51,13 @@ def saved_file_location():
         subprocess.run(f"mkdir /Final", shell=True)
         print("creating save file location")
 #saved_file_location()
+
+job_title = {
+    "Weighbridge_Operator": "Weighing loading and offloading",
+    "Depot_Operator": "Offloading and loading trucks",
+    "Depot_Clerk": "Documentation for offloading and loading trucks",
+    "Security_Officer": "",
+    "Groundsman": "",
+    "Office_Assistant": "",
+    "IT_Officer": "",
+}
