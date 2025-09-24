@@ -48,9 +48,13 @@ class OT:
     def search_job_description(self, job_title):
         row_coordinate = self.insert_point_location()
         row_number = int(row_coordinate.strip("A")) + 1
-        cell_coordinate = 'F' + row_number
+        cell_coordinate = 'F' + str(row_number)
+        print(self.sheet[cell_coordinate].value)
         
-        for self.sheet[cell_coordinate] in job_title:
+        for self.sheet[cell_coordinate].value in job_title:
+            cell = self.sheet[cell_coordinate].value
+
+            print(f" the is {cell}")
             return True
 
             
