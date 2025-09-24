@@ -52,7 +52,7 @@ def saved_file_location():
         print("creating save file location")
 #saved_file_location()
 
-job_title = {
+job_titles = {
     "Weighbridge_Operator": "Weighing loading and offloading",
     "Depot_Operator": "Offloading and loading trucks",
     "Depot_Clerk": "Documentation for offloading and loading trucks",

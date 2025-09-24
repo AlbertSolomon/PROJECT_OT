@@ -45,17 +45,17 @@ class OT:
                 # print(cell.coordinate)
                 return cell.coordinate
     
-    def search_job_description(self, job_title):
+    def search_job_description(self, job_titles):
         row_coordinate = self.insert_point_location()
         row_number = int(row_coordinate.strip("A")) + 1
         cell_coordinate = 'F' + str(row_number)
-        print(self.sheet[cell_coordinate].value)
+        cell_job_title = self.sheet[cell_coordinate].value.upper()
         
-        for self.sheet[cell_coordinate].value in job_title:
-            cell = self.sheet[cell_coordinate].value
-
-            print(f" the is {cell}")
-            return True
+        for job_title in job_titles:
+            jt = job_title.replace("_", " ").upper()
+            if jt == cell_job_title:
+                print(f"{jt} equals {cell_job_title}")
+                return jt
 
             
     def merger(self, start_point, end_point):

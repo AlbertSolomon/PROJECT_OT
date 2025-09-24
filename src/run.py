@@ -1,6 +1,6 @@
 from openpyxl import Workbook, load_workbook
 from ot import OT
-from lang import path, overtime_month, delisting, settings_path, saved_file_location
+from lang import path, overtime_month, delisting, settings_path, saved_file_location, job_titles
 import json
 from datetime import date
 import re
@@ -21,7 +21,7 @@ def command_prompter() -> list:
     ot_details.append(month)
 
     ot_details.append(sheet if sheet !='' else default_sheet)
-    OT(workbook, sheet if sheet !='' else default_sheet).insert_row()
+    OT(workbook, sheet if sheet !='' else default_sheet).search_job_description(job_titles.keys())
     print(date.today())
     return ot_details
 
