@@ -42,8 +42,17 @@ class OT:
         #! we are starting at row 3 to a row before insert_point_coordinate function.
         #! we need to check if a row contains a value,, if it doesnt, then we delete it.
         insert_row_coordinate = int(self.insert_point_coordinate().strip("A")) - 1
-        for row in self.sheet.iter_rows(min_row=4, max_row=insert_row_coordinate):
-            print(row.value)
+        row_list : list = []
+        row_list_values: list = []
+        for rows in self.sheet.iter_rows(min_row=4, max_row=insert_row_coordinate):
+            # print(rows)
+            row_list.append(rows)
+            for row in rows:
+                # print(row.value)
+                row_list_values.append(row.value)
+        print(row_list)
+        print(row_list_values)
+
 
     '''def insert_ot(self, day:str, start_time: float, end_time:float) -> dict:
         ot = {'day':day, 'start': start_time, 'end': end_time}
