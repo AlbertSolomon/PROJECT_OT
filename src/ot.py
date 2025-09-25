@@ -11,6 +11,14 @@ class OT:
             else:
                 return False
             
+    def insert_point_location(self) -> str:
+        # TOTAL is found in column A, 
+        search_point = 'TOTAL'
+        for cell in self.sheet['A']:
+            if cell.value == search_point:
+                # print(cell.coordinate)
+                return cell.coordinate
+            
     def create_worksheet(self, starter_workbook):
         source_sheet = self.workbook[starter_workbook]
         new_sheet = self.workbook.copy_worksheet(source_sheet)
@@ -37,14 +45,6 @@ class OT:
 
         return ot'''
     
-    def insert_point_location(self) -> str:
-        # TOTAL is found in column A, 
-        search_point = 'TOTAL'
-        for cell in self.sheet['A']:
-            if cell.value == search_point:
-                # print(cell.coordinate)
-                return cell.coordinate
-    
     def search_job_description(self, job_titles):
         row_coordinate = self.insert_point_location()
         row_number = int(row_coordinate.strip("A")) + 1
@@ -57,7 +57,6 @@ class OT:
                 print(f"{jt} equals {cell_job_title}")
                 return jt
 
-            
     def merger(self, start_point, end_point):
         self.sheet.merge_cells(f'{ start_point }:{ end_point }')
 
