@@ -12,7 +12,8 @@ class OT:
                 return False
             
     def insert_point_coordinate(self) -> str:
-        # TOTAL is found in column A, 
+        #! TOTAL is found in column A,
+        #! or we can return both the coordinate or just the number (list obviously)
         search_point = 'TOTAL'
         for cell in self.sheet['A']:
             if cell.value == search_point:
@@ -38,8 +39,11 @@ class OT:
                 self.workbook.remove(copy)
     
     def delete_empty_rows(self):
-        #? we are starting at row 3 to a row before insert_point_coordinate function 
-        pass
+        #! we are starting at row 3 to a row before insert_point_coordinate function.
+        #! we need to check if a row contains a value,, if it doesnt, then we delete it.
+        insert_row_coordinate = int(self.insert_point_coordinate().strip("A")) - 1
+        for row in self.sheet.iter_rows(min_row=4, max_row=insert_row_coordinate):
+            print(row.value)
 
     '''def insert_ot(self, day:str, start_time: float, end_time:float) -> dict:
         ot = {'day':day, 'start': start_time, 'end': end_time}
