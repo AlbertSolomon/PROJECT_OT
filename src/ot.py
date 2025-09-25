@@ -11,7 +11,7 @@ class OT:
             else:
                 return False
             
-    def insert_point_location(self) -> str:
+    def insert_point_coordinate(self) -> str:
         # TOTAL is found in column A, 
         search_point = 'TOTAL'
         for cell in self.sheet['A']:
@@ -38,6 +38,7 @@ class OT:
                 self.workbook.remove(copy)
     
     def delete_empty_rows(self):
+        #? we are starting at row 3 to a row before insert_point_coordinate function 
         pass
 
     '''def insert_ot(self, day:str, start_time: float, end_time:float) -> dict:
@@ -46,7 +47,7 @@ class OT:
         return ot'''
     
     def search_job_description(self, job_titles):
-        row_coordinate = self.insert_point_location()
+        row_coordinate = self.insert_point_coordinate()
         row_number = int(row_coordinate.strip("A")) + 1
         cell_coordinate = 'F' + str(row_number)
         cell_job_title = self.sheet[cell_coordinate].value.upper()
@@ -61,7 +62,7 @@ class OT:
         self.sheet.merge_cells(f'{ start_point }:{ end_point }')
 
     def insert_row(self):
-        cell_coordinate = self.insert_point_location() # rememeber that this is a string, and an int is required
+        cell_coordinate = self.insert_point_coordinate() # rememeber that this is a string, and an int is required
         #print(f"first state is { cell_coordinate }")
         for character in cell_coordinate: # or i could use the built in strip function, but i guess you are the smart one 😒
             if character == 'A':
