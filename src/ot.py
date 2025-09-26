@@ -47,10 +47,12 @@ class OT:
         for rows in self.sheet.iter_rows(min_row=4, max_row=insert_row_coordinate):
             # print(rows)
             row_list.append(rows)
+
             for row in rows:
                 # print(row.value)
                 row_list_values.append(row.value)
         print(row_list)
+        print("\n")
         print(row_list_values)
 
 
