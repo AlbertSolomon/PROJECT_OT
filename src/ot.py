@@ -43,14 +43,10 @@ class OT:
         #! we need to check if a row contains a value,, if it doesnt, then we delete it.
         insert_row_coordinate = int(self.insert_point_coordinate().strip("A")) - 1
         row_list :list = []
-        row_list_values:list = []
         cell_val_counter:int = 0
+
         for rows in self.sheet.iter_rows(min_row=4, max_row=insert_row_coordinate):
-            # print(rows)
             row_list.append(rows)
-            for row in rows:
-                # print(row.value)
-                row_list_values.append(row.value)
                 
         for row in range(len(row_list)):
             for cell in range(len(row_list[row])):
