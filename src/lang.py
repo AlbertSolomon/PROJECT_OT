@@ -61,3 +61,21 @@ job_titles = {
     "Office_Assistant": "",
     "IT_Officer": "",
 }
+
+def row_number(string: str) -> int:
+    try:
+        character:str = ''
+        lchar:str = []
+        comma:str = ''
+        for char in string:
+            if char.isdigit(): 
+                lchar.append(char)
+            else:
+                try:
+                    character = '0'
+                except ValueError:
+                    print("No digit found ")
+        character = comma.join(lchar)   
+        return int(character)
+    except TypeError:
+        return 0      
