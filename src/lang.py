@@ -78,4 +78,5 @@ def row_number(string: str) -> int:
         character = comma.join(lchar)   
         return int(character)
     except TypeError:
-        return int(str(string))      
+        return int(str(string))
+          
