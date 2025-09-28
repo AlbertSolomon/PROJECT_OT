@@ -1,3 +1,4 @@
+from lang import row_number
 class OT:
     def __init__(self, workbook, sheetname):
         self.workbook = workbook
@@ -44,23 +45,29 @@ class OT:
         insert_row_coordinate = int(self.insert_point_coordinate().strip("A")) - 1
         row_list :list = []
         cell_val_counter:int = 0
+        row_counter:int = 0
 
         for rows in self.sheet.iter_rows(min_row=4, max_row=insert_row_coordinate):
             row_list.append(rows)
                 
         for row in range(len(row_list)):
             for cell in range(len(row_list[row])):
-                print(str(row_list[row][cell]))
+                print(row_list[row][cell])
+                row_counter = row_number(row_list[row][cell].coordinate)
                 if type(row_list[row][cell].value) == type(None):
                     cell_val_counter += 1
         
             print(cell_val_counter)
+            print("row counter is: ",row_counter)
             if cell_val_counter == len(row_list[row]):
-                print("correct!")
+                print("row successfully deleted !!!")
+                #! this implementation is buggy, it disrupts the format of the spread sheet.
+                #? self.sheet.delete_rows(row_counter)
             else:
-                print("nope")
+                print("Something went wrong ")
 
             cell_val_counter = 0
+            row_counter = 0
         #print(row_list, len(row_list)) 
         #print("\n")
         #print(len(row_list[0]))
