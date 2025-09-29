@@ -80,7 +80,7 @@ class OT:
 
         return ot'''
     
-    def search_job_description(self, job_titles):
+    def search_job_description(self, job_titles) -> str:
         row_coordinate = self.insert_point_coordinate()
         row_number = int(row_coordinate.strip("A")) + 1
         cell_coordinate = 'F' + str(row_number)
@@ -120,3 +120,9 @@ class OT:
     def insert_ot_json(self, ot_day: dict):
         if type(ot_day) == dict:
             print("printing dict:")
+
+    def update_ot(self, sheetname: str):
+        pass
+
+    def update_ot_json(self, json_file: str):
+        pass
