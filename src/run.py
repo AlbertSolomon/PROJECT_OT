@@ -21,7 +21,7 @@ def command_prompter() -> list:
     ot_details.append(month)
 
     ot_details.append(sheet if sheet !='' else default_sheet)
-    OT(workbook, sheet if sheet !='' else default_sheet).search_job_description(job_titles.keys())
+    OT(workbook, sheet if sheet !='' else default_sheet).delete_empty_rows() #? search_job_description(job_titles.keys())
     print(date.today())
     return ot_details
 
