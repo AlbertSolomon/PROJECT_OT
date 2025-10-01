@@ -107,15 +107,15 @@ class OT:
         
         self.sheet.insert_rows(int(cell_coordinate))
         #print(f"the state after insertion is {cell_coordinate}")
-        # merging cells here and job desription insertion 
         '''TODO from C to E'''
         C = 'C' + cell_coordinate
         E = 'E' + cell_coordinate
         I = 'I' + cell_coordinate
 
         #self.sheet[C] = "JOb discription"
-        #self.sheet[I] = 1.5
-        #self.merger(C, E)
+        self.sheet[I] = 1.5
+        # merging cells here and job desription insertion 
+        self.merger(C, E)
         
     def insert_ot_json(self, ot_day: dict):
         if type(ot_day) == dict:
