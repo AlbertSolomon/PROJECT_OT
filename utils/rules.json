@@ -1,7 +1,5 @@
-// This contains the rules that must be followed when perfoming CRUD OPERATIONS
-
 {
   "finished": false,
   "temporaryFile": true,
-  "preparationDate": " first day of the new month"
+  "preparationDate": "dd.mm.yyyy"
 }
