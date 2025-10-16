@@ -4,6 +4,7 @@ import subprocess
 
 path = os.path.join('./template/', 'overtime_template.xlsx')
 settings_path = os.path.join('./utils/', 'settings.json')
+rules_path = os.path.join('./utils/', 'rules.json')
 
 def read_settings() -> str:
     try:
@@ -31,6 +32,19 @@ def change_month(new_month):
     else:
         util_settings_r['current_month'] = new_month
 
+def read_rules() -> dict:
+    try:
+        with open(rules_path,'r') as rules_settings_r:
+            rules = json.load(rules_settings_r)
+            #for key in rules.keys():
+            #    print(f"{ key }: { rules[key] }")
+            return rules
+    except Exception:
+        print("file not found or something ")
+
+def write_rules():
+    pass 
+
 def delisting(list: list) -> str:
     '''This exists for one single purpose, so don't judge..'''
     return list[0]
@@ -42,12 +56,15 @@ def delisting(list: list) -> str:
 overtime_month = read_settings().__getitem__('current_month')
 print(overtime_month)
 
+
+
 # CHECKING IF SAVE FILE PATH EXISTS, CREATING IT IF IT DOESNT
 def saved_file_location():
     if os.path.exists("../srcs/"):
         print("true")
         # pass
     else:
+        # note that permission is required to perform this operation
         subprocess.run(f"mkdir /Final", shell=True)
         print("creating save file location")
 #saved_file_location()
@@ -79,4 +96,5 @@ def row_number(string: str) -> int:
         return int(character)
     except TypeError:
         return int(str(string))
-          
+
+read_rules()
