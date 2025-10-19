@@ -42,8 +42,26 @@ def read_rules() -> dict:
     except Exception:
         print("file not found or something ")
 
-def write_rules():
-    pass 
+def write_rules(finished=False, temporary_file=True, preparationDate=0):
+    try:
+        with open(rules_path,'r') as file:
+            read_setting_data = json.load(file)
+
+            for key in read_setting_data:
+                if key == "finished" and finished:
+                    read_setting_data[key] =True
+
+                if key =="temporaryFile" and temporary_file==False:
+                    read_setting_data[key]=False
+
+                if key == "preparationDate":
+                    # input next month, this will hardly be editted by the user
+                    pass # for now 
+
+        with open(rules_path, 'w') as rules:
+            json.dump(read_setting_data,rules, indent=4)
+    except Exception:
+        print(FileNotFoundError)
 
 def delisting(list: list) -> str:
     '''This exists for one single purpose, so don't judge..'''
@@ -96,5 +114,3 @@ def row_number(string: str) -> int:
         return int(character)
     except TypeError:
         return int(str(string))
-
-read_rules()
