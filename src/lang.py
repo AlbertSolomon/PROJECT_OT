@@ -3,8 +3,10 @@ import json
 import subprocess
 
 path = os.path.join('./template/', 'overtime_template.xlsx')
+t_path = os.path.join('./temp/')
 settings_path = os.path.join('./utils/', 'settings.json')
 rules_path = os.path.join('./utils/', 'rules.json')
+
 
 def read_settings() -> str:
     try:
@@ -19,6 +21,10 @@ def read_settings() -> str:
 
         return location
     return location
+
+# READING THE CURRENT OVERTIME MONTH ()
+overtime_month = read_settings().__getitem__('current_month')
+data_path = os.path.join('./data/', f'{overtime_month}.json')
 
 def change_month(new_month):
     try:
@@ -69,12 +75,7 @@ def delisting(list: list) -> str:
 
 #print(change_month("july"))
 #print(read_settings())
-
-# READING THE CURRENT OVERTIME MONTH ()
-overtime_month = read_settings().__getitem__('current_month')
 print(overtime_month)
-
-
 
 # CHECKING IF SAVE FILE PATH EXISTS, CREATING IT IF IT DOESNT
 def saved_file_location():
@@ -114,3 +115,26 @@ def row_number(string: str) -> int:
         return int(character)
     except TypeError:
         return int(str(string))
+
+def create_json_datafile():
+    if not os.path.exists(data_path):
+        print("file does not exists ")
+        with open(data_path, 'w') as datafile:
+            json.dump(datafile,fp=True)
+    else:
+        print("file existss")
+
+def write_jsonD(sheetname, day, date, start, finish):
+    print(sheetname,day, date, start, finish)
+    #try:
+    #    with open(data_path, 'r') as file:
+    #        data = json.load(file)
+    #          
+    #except FileNotFoundError:
+    #    with open(data_path, 'w') as datafile:
+    #        json.dump(datafile,fp=True)
+    #
+    #print(data)
+
+#write_jsonD('solomon','sunday', 'lero',6.00, 18.00)
+create_json_datafile()
