@@ -117,10 +117,14 @@ def row_number(string: str) -> int:
         return int(str(string))
 
 def create_json_datafile():
+    # we need to keep state that the file has been created 
     if not os.path.exists(data_path):
-        print("file does not exists ")
+        print("creating file... ")
         with open(data_path, 'w') as datafile:
-            json.dump(datafile,fp=True)
+            try:
+                json.dump(datafile,fp=True)
+            except TypeError:
+                print("file created while handling the typeerror....!")
     else:
         print("file existss")
 
