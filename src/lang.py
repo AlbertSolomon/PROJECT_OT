@@ -140,5 +140,36 @@ def write_jsonD(sheetname, day, date, start, finish):
     #
     #print(data)
 
-#write_jsonD('solomon','sunday', 'lero',6.00, 18.00)
-create_json_datafile()
+# write_jsonD('solomon','sunday', 'lero',6.00, 18.00)
+#create_json_datafile()
+
+def post_rec(sheetname=0, date=0, holiday=0, start=0, finish=0):
+    create_json_datafile()
+    default=''
+    sheet_name_list: list = ["albert"]
+    sheet_name_data: list = []
+    records:dict = {"date": date, "holiday": holiday, "start":start, "finish": finish}
+    main_records: dict= {}
+    main_records = {'albert': [{'date': '22/11/2025', 'holiday': 'Saturday', 'start': 7.00, 'finish': 16.02}]}
+    if os.path.exists(data_path):
+        try:
+            with open(data_path, 'r') as file:
+                data = json.load(file)
+                print(data)
+
+            # with open(data_file, 'w') as write_data:
+            #     json.dump(data, data_file, indent=4)
+            for name in sheet_name_list:
+                if name == sheetname:
+                   for key in main_records.keys():
+                       if key == sheetname:
+                           main_records[key].append(records)
+                else:
+                    main_records[sheetname]=records
+
+        except json.JSONDecodeError:
+            with open(data_path, 'w') as data_file:
+                json.dump(default, data_file, indent=4)
+    print(main_records)
+
+post_rec("alber", "23/11/2025", "Sunday", 6.02, 18.09)
