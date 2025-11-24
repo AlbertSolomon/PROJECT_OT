@@ -128,20 +128,10 @@ def create_json_datafile():
     else:
         print("file existss")
 
-def write_jsonD(sheetname, day, date, start, finish):
-    print(sheetname,day, date, start, finish)
-    #try:
-    #    with open(data_path, 'r') as file:
-    #        data = json.load(file)
-    #          
-    #except FileNotFoundError:
-    #    with open(data_path, 'w') as datafile:
-    #        json.dump(datafile,fp=True)
-    #
-    #print(data)
-
-# write_jsonD('solomon','sunday', 'lero',6.00, 18.00)
-#create_json_datafile()
+def write_json_data(main_record_dict: dict):
+    with open(data_path, 'w') as json_data:
+        json.dump(main_record_dict, json_data, indent=4) 
+    return json.dumps(main_record_dict, indent=4)
 
 def post_rec(sheetname=0, date=0, holiday=0, start=0, finish=0):
     create_json_datafile()
@@ -171,5 +161,9 @@ def post_rec(sheetname=0, date=0, holiday=0, start=0, finish=0):
             with open(data_path, 'w') as data_file:
                 json.dump(default, data_file, indent=4)
     print(main_records)
+    print(write_json_data(main_records))
 
-post_rec("alber", "23/11/2025", "Sunday", 6.02, 18.09)
+post_rec("nathan", "23/11/2025", "Sunday", 6.02, 18.09)
+post_rec('jon', '23/11/2025', 'Sunday', 7.30, 16.45)
+post_rec("nathan", "23/11/2025", "Sunday", 6.02, 18.09)
+post_rec('jon', '23/11/2025', 'Sunday', 7.30, 16.45)
