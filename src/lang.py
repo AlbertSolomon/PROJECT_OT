@@ -135,13 +135,60 @@ def write_json_data(main_record_dict: dict):
 
 ###!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+def post_rec(sheetname:str ,date:str ,holiday:str ,start:float ,finish:float):
+    #? initializing
+    sheetname = sheetname.upper()
+    sheetname_rec: list = []
+    records:dict = {
+        "date": date, 
+        "holiday": holiday, 
+        "start":start, 
+        "finish": finish
+    }   
+    main_records: dict= {}
 
-def post_rec(sheetname, date, horiday, start, finish):
     #? checking if the json file has been created, and if it has any values 
-    #  
+    create_json_datafile()
+    try:
+        if create_json_datafile and os.path.getsize(data_path) > 0:
+                with open(data_path, 'r') as json_data_file:
+                    json_data = json.load(json_data_file)
+                    print(type(json_data))
+                    #! turn json data into dict here
+                    main_records = json_data
+                    print("from created file:::", json_data)
+        else:
+            #? remember that this fits for file that has just been created (empty json file)
+            sheetname_rec.append(records)
+            main_records = {sheetname:sheetname_rec}
 
+        if sheetname in main_records:
+            if records not in main_records[sheetname]:
+                #print("available rec::",main_records[sheetname])
+                #print(type(main_records[sheetname]))
+                #sheetname_rec = main_records[sheetname]
+                #sheetname_rec.append(records)
+                #main_records = { sheetname: sheetname_rec}
+                if not isinstance(main_records[sheetname], list):
+                    main_records[sheetname] = [main_records[sheetname]]
+                main_records[sheetname].append(records)
+        else:
+            sheetname_rec.append(records)
+            main_records[sheetname] = sheetname_rec
+
+        #? +++++++++++++++++++ writing data to json file ++++++++++++++++++++++++++++++++++++
+        with open(data_path, 'w') as data_file:
+            json.dump(main_records, data_file, indent=4)
+        #? +++++++++++++++++++ writing data to json file ++++++++++++++++++++++++++++++++++++
+    except json.JSONDecodeError:
+        print("json file is empty ")
+
+    print(json.dumps(main_records, indent=4))
+    print("+++++ record added sucessfully +++++")
+        
 ###!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# post_rec("nathan", "23/11/2025", "Sunday", 6.02, 18.09)
-# post_rec('jon', '23/11/2025', 'Sunday', 7.30, 16.45)
-# post_rec("yami", "23/11/2025", "Sunday", 6.02, 18.09)
-# post_rec('jon', '23/11/2025', 'Sunday', 7.00, 19.45)
+post_rec("nathan", "23/11/2025", "Sunday", 6.02, 18.09)
+post_rec('jon', '23/11/2025', 'Sunday', 7.30, 16.45)
+post_rec("nathan", "23/11/2025", "Sunday", 19.01, 23.09)
+post_rec('jon', '22/11/2025', 'Saturday', 7.00, 19.45)
+post_rec('mirrium', '22/11/2025', 'Saturday', 7.00, 19.45)
