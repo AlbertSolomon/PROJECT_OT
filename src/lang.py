@@ -136,6 +136,17 @@ def write_json_data(main_record_dict: dict):
 ###!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 def post_rec(sheetname:str ,date:str ,holiday:str ,start:float ,finish:float):
+    """
+    Add work records to JSON data file.
+    
+    Args:
+        sheetname: Name of the sheet/employee
+        date: Date of work record
+        holiday: Holiday information (or  Weekend)
+        start: Start time
+        finish: Finish time
+    """
+
     #? initializing
     sheetname = sheetname.upper()
     sheetname_rec: list = []
@@ -151,12 +162,10 @@ def post_rec(sheetname:str ,date:str ,holiday:str ,start:float ,finish:float):
     create_json_datafile()
     try:
         if create_json_datafile and os.path.getsize(data_path) > 0:
-                with open(data_path, 'r') as json_data_file:
-                    json_data = json.load(json_data_file)
-                    print(type(json_data))
-                    #! turn json data into dict here
-                    main_records = json_data
-                    print("from created file:::", json_data)
+            with open(data_path, 'r') as json_data_file:
+                json_data = json.load(json_data_file)
+                #! turn json data into dict here
+                main_records = json_data
         else:
             #? remember that this fits for file that has just been created (empty json file)
             sheetname_rec.append(records)
@@ -183,8 +192,8 @@ def post_rec(sheetname:str ,date:str ,holiday:str ,start:float ,finish:float):
     except json.JSONDecodeError:
         print("json file is empty ")
 
-    print(json.dumps(main_records, indent=4))
-    print("+++++ record added sucessfully +++++")
+    #print(json.dumps(main_records, indent=4))
+    #print("+++++ record added sucessfully +++++")
         
 ###!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 post_rec("nathan", "23/11/2025", "Sunday", 6.02, 18.09)
