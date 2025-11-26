@@ -116,7 +116,7 @@ def row_number(string: str) -> int:
     except TypeError:
         return int(str(string))
 
-def create_json_datafile():
+def create_json_datafile() -> bool:
     # we need to keep state that the file has been created 
     if not os.path.exists(data_path):
         print("creating file... ")
@@ -126,44 +126,22 @@ def create_json_datafile():
             except TypeError:
                 print("file created while handling the typeerror....!")
     else:
-        print("file existss")
+        return True
 
 def write_json_data(main_record_dict: dict):
     with open(data_path, 'w') as json_data:
         json.dump(main_record_dict, json_data, indent=4) 
     return json.dumps(main_record_dict, indent=4)
 
-def post_rec(sheetname=0, date=0, holiday=0, start=0, finish=0):
-    create_json_datafile()
-    default=''
-    sheet_name_list: list = ["albert"]
-    sheet_name_data: list = []
-    records:dict = {"date": date, "holiday": holiday, "start":start, "finish": finish}
-    main_records: dict= {}
-    main_records = {'albert': [{'date': '22/11/2025', 'holiday': 'Saturday', 'start': 7.00, 'finish': 16.02}]}
-    if os.path.exists(data_path):
-        try:
-            with open(data_path, 'r') as file:
-                data = json.load(file)
-                print(data)
+###!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-            # with open(data_file, 'w') as write_data:
-            #     json.dump(data, data_file, indent=4)
-            for name in sheet_name_list:
-                if name == sheetname:
-                   for key in main_records.keys():
-                       if key == sheetname:
-                           main_records[key].append(records)
-                else:
-                    main_records[sheetname]=records
 
-        except json.JSONDecodeError:
-            with open(data_path, 'w') as data_file:
-                json.dump(default, data_file, indent=4)
-    print(main_records)
-    print(write_json_data(main_records))
+def post_rec(sheetname, date, horiday, start, finish):
+    #? checking if the json file has been created, and if it has any values 
+    #  
 
-post_rec("nathan", "23/11/2025", "Sunday", 6.02, 18.09)
-post_rec('jon', '23/11/2025', 'Sunday', 7.30, 16.45)
-post_rec("nathan", "23/11/2025", "Sunday", 6.02, 18.09)
-post_rec('jon', '23/11/2025', 'Sunday', 7.30, 16.45)
+###!+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# post_rec("nathan", "23/11/2025", "Sunday", 6.02, 18.09)
+# post_rec('jon', '23/11/2025', 'Sunday', 7.30, 16.45)
+# post_rec("yami", "23/11/2025", "Sunday", 6.02, 18.09)
+# post_rec('jon', '23/11/2025', 'Sunday', 7.00, 19.45)
