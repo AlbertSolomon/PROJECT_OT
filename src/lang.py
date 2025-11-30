@@ -173,11 +173,6 @@ def post_rec(sheetname:str ,date:str ,holiday:str ,start:float ,finish:float):
 
         if sheetname in main_records:
             if records not in main_records[sheetname]:
-                #print("available rec::",main_records[sheetname])
-                #print(type(main_records[sheetname]))
-                #sheetname_rec = main_records[sheetname]
-                #sheetname_rec.append(records)
-                #main_records = { sheetname: sheetname_rec}
                 if not isinstance(main_records[sheetname], list):
                     main_records[sheetname] = [main_records[sheetname]]
                 main_records[sheetname].append(records)
@@ -201,3 +196,4 @@ post_rec('jon', '23/11/2025', 'Sunday', 7.30, 16.45)
 post_rec("nathan", "23/11/2025", "Sunday", 19.01, 23.09)
 post_rec('jon', '22/11/2025', 'Saturday', 7.00, 19.45)
 post_rec('mirrium', '22/11/2025', 'Saturday', 7.00, 19.45)
+
