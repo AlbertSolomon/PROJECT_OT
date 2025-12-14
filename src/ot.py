@@ -62,7 +62,7 @@ class OT:
             if cell_val_counter == len(row_list[row]):
                 print("row successfully deleted !!!")
                 #! this implementation is buggy, it disrupts the format of the spread sheet.
-                #? self.sheet.delete_rows(row_counter)
+                self.sheet.delete_rows(row_counter)
             else:
                 print("Something went wrong ")
 
@@ -104,6 +104,7 @@ class OT:
             else:
                 #print(character)
                 cell_coordinate = character
+                print(cell_coordinate)
         
         self.sheet.insert_rows(int(cell_coordinate))
         #print(f"the state after insertion is {cell_coordinate}")
@@ -113,11 +114,11 @@ class OT:
         I = 'I' + cell_coordinate
 
         #self.sheet[C] = "JOb discription"
-        self.sheet[I] = 1.5
-        # merging cells here and job desription insertion 
+        self.sheet[I] = 1.5 # this value should be dynamic, thus based on employees act
+        # merging cells here and job desription insertion
         self.merger(C, E)
         
-    def insert_ot_json(self, ot_day: dict):
+    def sync_json_data(self, ot_day: dict):
         if type(ot_day) == dict:
             print("printing dict:")
 
