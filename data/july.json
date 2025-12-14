@@ -1,0 +1,38 @@
+{
+    "NATHAN": [
+        {
+            "date": "23/11/2025",
+            "holiday": "Sunday",
+            "start": 6.02,
+            "finish": 18.09
+        },
+        {
+            "date": "23/11/2025",
+            "holiday": "Sunday",
+            "start": 19.01,
+            "finish": 23.09
+        }
+    ],
+    "JON": [
+        {
+            "date": "23/11/2025",
+            "holiday": "Sunday",
+            "start": 7.3,
+            "finish": 16.45
+        },
+        {
+            "date": "22/11/2025",
+            "holiday": "Saturday",
+            "start": 7.0,
+            "finish": 19.45
+        }
+    ],
+    "MIRRIUM": [
+        {
+            "date": "22/11/2025",
+            "holiday": "Saturday",
+            "start": 7.0,
+            "finish": 19.45
+        }
+    ]
+}
