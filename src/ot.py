@@ -119,8 +119,13 @@ class OT:
         self.merger(C, E)
         
     def sync_json_data(self, ot_day: dict):
-        if type(ot_day) == dict:
-            print("printing dict:")
+        # might use a helper function but who knows 
+        from lang import data_path as data
+        import json
+        with open(data, 'r') as ot_data_file:
+            ot_data = json.load(ot_data_file)
+            print(ot_data)
+
 
     def update_ot(self, sheetname: str):
         pass
