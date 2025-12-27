@@ -1,4 +1,4 @@
-from lang import row_number
+from lang import row_number, get_ot_data
 class OT:
     def __init__(self, workbook, sheetname):
         self.workbook = workbook
@@ -120,12 +120,7 @@ class OT:
         
     def sync_json_data(self, ot_day: dict):
         # might use a helper function but who knows 
-        from lang import data_path as data
-        import json
-        with open(data, 'r') as ot_data_file:
-            ot_data = json.load(ot_data_file)
-            print(ot_data)
-
+        ot_data = get_ot_data()
 
     def update_ot(self, sheetname: str):
         pass

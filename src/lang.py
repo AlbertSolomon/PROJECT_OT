@@ -197,3 +197,8 @@ post_rec("nathan", "23/11/2025", "Sunday", 19.01, 23.09)
 post_rec('jon', '22/11/2025', 'Saturday', 7.00, 19.45)
 post_rec('mirrium', '22/11/2025', 'Saturday', 7.00, 19.45)
 
+def get_ot_data() -> dict:
+    with open(data_path, 'r') as ot_data_file:
+        ot_data = json.load(ot_data_file)
+    return ot_data
+
