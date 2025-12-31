@@ -5,12 +5,17 @@ class OT:
         self.sheetname = sheetname
         self.sheet = self.workbook[self.sheetname]
 
-    def finder(self) -> bool:
-        for name in self.workbook.sheetnames:
-            if name == self.sheetname:
-                return True
-            else:
-                return False
+    def finder(self, sheetname=None) -> bool:
+        if sheetname == None:
+            for name in self.workbook.sheetnames:
+                if name == self.sheetname:
+                    return True
+                else:
+                    return False
+        if sheetname in self.workbook.sheetnames:
+            return True
+        return False
+
             
     def insert_point_coordinate(self) -> str:
         #! TOTAL is found in column A,
@@ -118,9 +123,16 @@ class OT:
         # merging cells here and job desription insertion
         self.merger(C, E)
         
-    def sync_json_data(self, ot_day: dict):
+    def sync_json_data(self):
         # might use a helper function but who knows 
         ot_data = get_ot_data()
+        print(ot_data)
+        print(type(ot_data))
+        for key in ot_data:
+            # print(ot_data[key])
+            print(f"{ key }:",self.finder(key))
+        # sheetname, DATE, DAY, PURPOSE (depends with the posistion ),START, FINISH, TOTAL HOURS, RATE(if its not saturday or sunday rate = 1.00)
+        
 
     def update_ot(self, sheetname: str):
         pass
