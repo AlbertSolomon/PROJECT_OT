@@ -5,7 +5,7 @@ class OT:
         self.sheetname = sheetname
         self.sheet = self.workbook[self.sheetname]
 
-    def finder(self, sheetname=None) -> bool:
+    def finder(self, sheetname:str=None) -> bool:
         if sheetname == None:
             for name in self.workbook.sheetnames:
                 if name == self.sheetname:
@@ -78,12 +78,6 @@ class OT:
         #print(len(row_list[0]))
         #print("\n")
         #print(row_list_values, len(row_list_values))
-
-
-    '''def insert_ot(self, day:str, start_time: float, end_time:float) -> dict:
-        ot = {'day':day, 'start': start_time, 'end': end_time}
-
-        return ot'''
     
     def search_job_description(self, job_titles) -> str:
         row_coordinate = self.insert_point_coordinate()
@@ -126,12 +120,13 @@ class OT:
     def sync_json_data(self):
         # might use a helper function but who knows 
         ot_data = get_ot_data()
-        print(ot_data)
-        print(type(ot_data))
+        #print(ot_data)
+        #print(type(ot_data))
         for key in ot_data:
             # print(ot_data[key])
             print(f"{ key }:",self.finder(key))
         # sheetname, DATE, DAY, PURPOSE (depends with the posistion ),START, FINISH, TOTAL HOURS, RATE(if its not saturday or sunday rate = 1.00)
+            
         
 
     def update_ot(self, sheetname: str):
