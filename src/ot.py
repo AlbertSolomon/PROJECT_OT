@@ -15,8 +15,7 @@ class OT:
         if sheetname in self.workbook.sheetnames:
             return True
         return False
-
-            
+      
     def insert_point_coordinate(self) -> str:
         #! TOTAL is found in column A,
         #! or we can return both the coordinate or just the number (list obviously)
@@ -126,7 +125,12 @@ class OT:
             # print(ot_data[key])
             print(f"{ key }:",self.finder(key))
         # sheetname, DATE, DAY, PURPOSE (depends with the posistion ),START, FINISH, TOTAL HOURS, RATE(if its not saturday or sunday rate = 1.00)
-            
+            if self.finder(key):
+                sheet = self.workbook[key]
+                # i cant do this 
+                    # sheet.self.insert_row()
+                    # sheet[self.insert_point_coordinate()]
+                
         
 
     def update_ot(self, sheetname: str):
