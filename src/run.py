@@ -1,6 +1,6 @@
 from openpyxl import Workbook, load_workbook
 from ot import OT
-from lang import path, overtime_month, delisting, settings_path, saved_file_location, job_titles
+from lang import path, overtime_month, delisting, settings_path, saved_file_location, job_titles, read_rules
 import json
 from datetime import date
 import re
@@ -17,11 +17,15 @@ def command_prompter() -> list:
     ot_details: list= []
     month = input("enter month for recording/retrieving ovetime details:", )
     sheet = input("enter sheet name:")
+    job_title = input("enter job title:")
+    #start: float = float(input("START:"))
+    #finish: float = float(input("FINISH:"))
     default_sheet = delisting(workbook.sheetnames)
     ot_details.append(month)
 
     ot_details.append(sheet if sheet !='' else default_sheet)
-    OT(workbook, sheet if sheet !='' else default_sheet).delete_empty_rows() #? search_job_description(job_titles.keys())
+    OT(workbook, sheet if sheet !='' else default_sheet).search_job_description(job_titles.keys())
+    OT(workbook, default_sheet).sync_json_data()
     print(date.today())
     return ot_details
 
