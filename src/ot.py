@@ -115,24 +115,10 @@ class OT:
         self.sheet[I] = 1.5 # this value should be dynamic, thus based on employees act
         # merging cells here and job desription insertion
         self.merger(C, E)
-        
-    def sync_json_data(self):
-        # might use a helper function but who knows 
-        ot_data = get_ot_data()
-        #print(ot_data)
-        #print(type(ot_data))
-        for key in ot_data:
-            # print(ot_data[key])
-            print(f"{ key }:",self.finder(key))
-        # sheetname, DATE, DAY, PURPOSE (depends with the posistion ),START, FINISH, TOTAL HOURS, RATE(if its not saturday or sunday rate = 1.00)
-            if self.finder(key):
-                sheet = self.workbook[key]
-                # i cant do this 
-                    # sheet.self.insert_row()
-                    # sheet[self.insert_point_coordinate()]
+    
+    def insert_cell_value(self, coordinate:str, cell_value):
+        self.sheet[coordinate] = cell_value
                 
-        
-
     def update_ot(self, sheetname: str):
         pass
 
