@@ -2,6 +2,7 @@ from lang import get_ot_data, path, t_path, settings_path, rules_path, overtime_
 from ot import OT
 from openpyxl import Workbook, load_workbook
 from openpyxl.worksheet.formula import ArrayFormula # example implementation at https://openpyxl.readthedocs.io/en/stable/simple_formulae.html#id2
+import threading
 
 workbook = load_workbook(path)
 workbook.active
