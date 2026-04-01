@@ -1,4 +1,4 @@
-from lang import get_ot_data, path, t_path, settings_path, rules_path
+from lang import get_ot_data, path, t_path, settings_path, rules_path, overtime_month
 from ot import OT
 from openpyxl import Workbook, load_workbook
 from openpyxl.worksheet.formula import ArrayFormula # example implementation at https://openpyxl.readthedocs.io/en/stable/simple_formulae.html#id2
@@ -11,13 +11,15 @@ def sync_json_data():
     ot_data = get_ot_data()
     data_list:list = []
     record_dict: dict = {}
-    start_point = int(temp_workbook.insert_point_coordinate().lstrip('A')) - 1
+    counter: int = 0
     # print(ot_data)
     # print(type(ot_data))
     for key in ot_data:
         try:
             # print(ot_data[key])
             temp_workbook = OT(workbook, key)
+            start_point = str(int(temp_workbook.insert_point_coordinate().lstrip('A')) - 1)
+            print("loop:",start_point)
             print(type(temp_workbook))
             print(f"{ key }: is", temp_workbook.finder())
 
@@ -28,10 +30,21 @@ def sync_json_data():
                 for _, indx in enumerate(data_list):
                     #print(data_list[_])
                     record_dict = data_list[_]
-                    print(temp_workbook.insert_point_coordinate())
-                    print(start_point)
+                    #print(temp_workbook.insert_point_coordinate())
+                    #print(start_point)
+                    #print(f"index ::: { indx }",record_dict.get("date"))
+                    
+                    temp_workbook.insert_cell_value("A" + start_point, record_dict.get("date"))
+                    temp_workbook.insert_cell_value("B" + start_point, record_dict.get("holiday"))
+                    temp_workbook.insert_cell_value("F" + start_point, record_dict.get("start"))
+                    temp_workbook.insert_cell_value("G" + start_point, record_dict.get("finish"))
+                    temp_workbook.insert_row()
                     print(record_dict.get("date"))
-
+                    print(record_dict.get("holiday"))
+                    print(record_dict.get("start"))
+                    print(record_dict.get("finish"))
+                    print("\n") # insert row here 
+            workbook.save(f"./temp/{ overtime_month }.xlsx")
         except KeyError:
             print(f"{key} does not exist in the workbook")
             # create a workbook
