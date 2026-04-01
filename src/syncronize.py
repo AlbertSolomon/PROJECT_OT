@@ -11,6 +11,7 @@ def sync_json_data():
     ot_data = get_ot_data()
     data_list:list = []
     record_dict: dict = {}
+    start_point = int(temp_workbook.insert_point_coordinate().lstrip('A')) - 1
     # print(ot_data)
     # print(type(ot_data))
     for key in ot_data:
@@ -28,6 +29,7 @@ def sync_json_data():
                     #print(data_list[_])
                     record_dict = data_list[_]
                     print(temp_workbook.insert_point_coordinate())
+                    print(start_point)
                     print(record_dict.get("date"))
 
         except KeyError:
