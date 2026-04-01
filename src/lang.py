@@ -196,9 +196,11 @@ post_rec('jon', '23/11/2025', 'Sunday', 7.30, 16.45)
 post_rec("nathan", "23/11/2025", "Sunday", 19.01, 23.09)
 post_rec('jon', '22/11/2025', 'Saturday', 7.00, 19.45)
 post_rec('mirrium', '22/11/2025', 'Saturday', 7.00, 19.45)
+post_rec('Albert', '26/12/2025', "Boxing Day", 6.35, 18.33)
+post_rec('Albert', '20/12/2025', "Saturday", 22.12, 8.15)
+
 
 def get_ot_data() -> dict:
     with open(data_path, 'r') as ot_data_file:
         ot_data = json.load(ot_data_file)
     return ot_data
-

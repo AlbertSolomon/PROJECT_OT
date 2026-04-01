@@ -34,5 +34,19 @@
             "start": 7.0,
             "finish": 19.45
         }
+    ],
+    "ALBERT": [
+        {
+            "date": "26/12/2025",
+            "holiday": "Boxing Day",
+            "start": 6.35,
+            "finish": 18.33
+        },
+        {
+            "date": "20/12/2025",
+            "holiday": "Saturday",
+            "start": 22.12,
+            "finish": 8.15
+        }
     ]
 }
