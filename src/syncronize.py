@@ -1,6 +1,7 @@
 from lang import get_ot_data, path, t_path, settings_path, rules_path
 from ot import OT
 from openpyxl import Workbook, load_workbook
+from openpyxl.worksheet.formula import ArrayFormula # example implementation at https://openpyxl.readthedocs.io/en/stable/simple_formulae.html#id2
 
 workbook = load_workbook(path)
 workbook.active
@@ -26,6 +27,7 @@ def sync_json_data():
                 for _, indx in enumerate(data_list):
                     #print(data_list[_])
                     record_dict = data_list[_]
+                    print(temp_workbook.insert_point_coordinate())
                     print(record_dict.get("date"))
 
         except KeyError:
