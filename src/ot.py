@@ -125,3 +125,12 @@ class OT:
 
     def update_ot_json(self, json_file: str):
         pass
+
+    def row_insert_point(self):
+        # returns row number and this is for dummy purposes only or may be not ?
+        for cell in self.sheet['A']:
+            if cell.value == 'TOTAL':
+                return cell.row
+        return None
+    
+    
