@@ -4,6 +4,7 @@ class OT:
         self.workbook = workbook
         self.sheetname = sheetname
         self.sheet = self.workbook[self.sheetname]
+        self.current_row = None
 
     def finder(self, sheetname:str=None) -> bool:
         if sheetname == None:

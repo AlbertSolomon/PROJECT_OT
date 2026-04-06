@@ -25,7 +25,7 @@ def command_prompter() -> list:
 
     ot_details.append(sheet if sheet !='' else default_sheet)
     OT(workbook, sheet if sheet !='' else default_sheet).search_job_description(job_titles.keys())
-    OT(workbook, default_sheet).sync_json_data()
+    OT(workbook, default_sheet).insert_row()
     print(date.today())
     return ot_details
 
