@@ -133,4 +133,7 @@ class OT:
                 return cell.row
         return None
     
-    
+    def row_insert_point_coordinate(self):
+        if self.current_row == None:
+            self.current_row = self.row_insert_point() - 1
+        return self.current_row
