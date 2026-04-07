@@ -94,6 +94,18 @@ class OT:
     def merger(self, start_point, end_point):
         self.sheet.merge_cells(f'{ start_point }:{ end_point }')
 
+    def row_insert_point(self):
+        # returns row number and this is for dummy purposes only or may be not ?
+        for cell in self.sheet['A']:
+            if cell.value == 'TOTAL':
+                return cell.row
+        return None
+    
+    def row_insert_point_coordinate(self):
+        if self.current_row == None:
+            self.current_row = self.row_insert_point() - 1
+        return self.current_row
+    
     def insert_row(self):
         cell_coordinate = self.insert_point_coordinate() # rememeber that this is a string, and an int is required
         #print(f"first state is { cell_coordinate }")
@@ -125,15 +137,3 @@ class OT:
 
     def update_ot_json(self, json_file: str):
         pass
-
-    def row_insert_point(self):
-        # returns row number and this is for dummy purposes only or may be not ?
-        for cell in self.sheet['A']:
-            if cell.value == 'TOTAL':
-                return cell.row
-        return None
-    
-    def row_insert_point_coordinate(self):
-        if self.current_row == None:
-            self.current_row = self.row_insert_point() - 1
-        return self.current_row

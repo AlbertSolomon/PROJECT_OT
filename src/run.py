@@ -25,7 +25,8 @@ def command_prompter() -> list:
 
     ot_details.append(sheet if sheet !='' else default_sheet)
     OT(workbook, sheet if sheet !='' else default_sheet).search_job_description(job_titles.keys())
-    OT(workbook, default_sheet).insert_point_coordinate()
+    OT(workbook, default_sheet).insert_row()
+    print(f"insert point coordinate: ",OT(workbook, default_sheet).insert_point_coordinate())
     print(OT(workbook, default_sheet).row_insert_point())
     print(date.today())
     return ot_details
