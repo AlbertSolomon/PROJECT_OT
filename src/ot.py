@@ -107,22 +107,14 @@ class OT:
         return self.current_row
     
     def insert_row(self):
-        cell_coordinate = self.insert_point_coordinate() # rememeber that this is a string, and an int is required
-        #print(f"first state is { cell_coordinate }")
-        for character in cell_coordinate: # or i could use the built in strip function, but i guess you are the smart one 😒
-            if character == 'A':
-                continue
-            else:
-                #print(character)
-                cell_coordinate = character
-                print(cell_coordinate)
-        
-        self.sheet.insert_rows(int(cell_coordinate))
+        cell_coordinate:int = self.row_insert_point_coordinate()
+        self.sheet.insert_rows(cell_coordinate)
         #print(f"the state after insertion is {cell_coordinate}")
         '''TODO from C to E'''
-        C = 'C' + cell_coordinate
-        E = 'E' + cell_coordinate
-        I = 'I' + cell_coordinate
+
+        C = 'C' + str(cell_coordinate)
+        E = 'E' + str(cell_coordinate)
+        I = 'I' + str(cell_coordinate)
 
         #self.sheet[C] = "JOb discription"
         self.sheet[I] = 1.5 # this value should be dynamic, thus based on employees act
