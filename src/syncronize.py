@@ -32,7 +32,7 @@ def sync_json_data():
                     record_dict = data_list[_]
                     #print(temp_workbook.insert_point_coordinate())
                     #print(start_point)
-                    #print(f"index ::: { indx }",record_dict.get("date"))
+                    # print(f"index ::: { indx }",record_dict.get("date"))
 
                     print(f"{ "A" + str(int(start_point) + _) } : { record_dict.get("date") }")
                     print(f"{ "B" + str(int(start_point) + _) } : { record_dict.get("holiday") }")
@@ -41,7 +41,7 @@ def sync_json_data():
                     print("\n") # insert row here 
                     
                     temp_workbook.insert_row()
-            workbook.save(f"./temp/{ overtime_month }.xlsx")
+            #workbook.save(f"./temp/{ overtime_month }.xlsx")
         except KeyError:
             print(f"{key} does not exist in the workbook")
             # create a workbook

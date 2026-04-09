@@ -120,6 +120,9 @@ class OT:
         self.sheet[I] = 1.5 # this value should be dynamic, thus based on employees act
         # merging cells here and job desription insertion
         # self.merger(C, E)
+
+    def append_rows(self, row_data: list):
+        pass
     
     def insert_cell_value(self, coordinate:str, cell_value):
         self.sheet[coordinate] = cell_value
