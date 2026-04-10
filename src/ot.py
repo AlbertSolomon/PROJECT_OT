@@ -4,6 +4,7 @@ class OT:
         self.workbook = workbook
         self.sheetname = sheetname
         self.sheet = self.workbook[self.sheetname]
+        self.current_row = None
 
     def finder(self, sheetname:str=None) -> bool:
         if sheetname == None:
@@ -93,28 +94,35 @@ class OT:
     def merger(self, start_point, end_point):
         self.sheet.merge_cells(f'{ start_point }:{ end_point }')
 
+    def row_insert_point(self):
+        # returns row number and this is for dummy purposes only or may be not ?
+        for cell in self.sheet['A']:
+            if cell.value == 'TOTAL':
+                return cell.row
+        return None
+    
+    def row_insert_point_coordinate(self):
+        if self.current_row == None:
+            self.current_row = self.row_insert_point() - 1
+        return self.current_row
+    
     def insert_row(self):
-        cell_coordinate = self.insert_point_coordinate() # rememeber that this is a string, and an int is required
-        #print(f"first state is { cell_coordinate }")
-        for character in cell_coordinate: # or i could use the built in strip function, but i guess you are the smart one 😒
-            if character == 'A':
-                continue
-            else:
-                #print(character)
-                cell_coordinate = character
-                print(cell_coordinate)
-        
-        self.sheet.insert_rows(int(cell_coordinate))
+        cell_coordinate:int = self.row_insert_point_coordinate()
+        self.sheet.insert_rows(cell_coordinate)
         #print(f"the state after insertion is {cell_coordinate}")
         '''TODO from C to E'''
-        C = 'C' + cell_coordinate
-        E = 'E' + cell_coordinate
-        I = 'I' + cell_coordinate
+
+        C = 'C' + str(cell_coordinate)
+        E = 'E' + str(cell_coordinate)
+        I = 'I' + str(cell_coordinate)
 
         #self.sheet[C] = "JOb discription"
         self.sheet[I] = 1.5 # this value should be dynamic, thus based on employees act
         # merging cells here and job desription insertion
-        self.merger(C, E)
+        # self.merger(C, E)
+
+    def append_rows(self, row_data: list):
+        pass
     
     def insert_cell_value(self, coordinate:str, cell_value):
         self.sheet[coordinate] = cell_value

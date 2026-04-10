@@ -47,6 +47,12 @@
             "holiday": "Saturday",
             "start": 22.12,
             "finish": 8.15
+        },
+        {
+            "date": "20/1/2026",
+            "holiday": "Saturday",
+            "start": 6.12,
+            "finish": 22.15
         }
     ]
 }
