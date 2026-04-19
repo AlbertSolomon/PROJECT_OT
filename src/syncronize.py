@@ -33,15 +33,12 @@ def sync_json_data():
                     #print(temp_workbook.insert_point_coordinate())
                     #print(start_point)
                     # print(f"index ::: { indx }",record_dict.get("date"))
-
-                    print(f"{ "A" + str(int(start_point) + _) } : { record_dict.get("date") }")
-                    print(f"{ "B" + str(int(start_point) + _) } : { record_dict.get("holiday") }")
-                    print(f"{ "F" + str(int(start_point) + _) } : { record_dict.get("start") }")
-                    print(f"{ "G" + str(int(start_point) + _) } : { record_dict.get("finish") }")
-                    print("\n") # insert row here 
                     
-                    temp_workbook.insert_row()
-            #workbook.save(f"./temp/{ overtime_month }.xlsx")
+                # this is from an alternate branch 
+                # we are first checking the records the sheet haas 
+                # we are inserting the rows according to the amount records in a sheet from a specific a specific location.
+
+            workbook.save(f"./temp/{ overtime_month }.xlsx")
         except KeyError:
             print(f"{key} does not exist in the workbook")
             # create a workbook
