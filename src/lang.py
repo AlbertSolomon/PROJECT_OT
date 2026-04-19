@@ -3,6 +3,7 @@ import json
 import subprocess
 
 path = os.path.join('./template/', 'overtime_template.xlsx')
+path_blank = os.path.join('./template/', 'overtime_template_blank.xlsx')
 t_path = os.path.join('./temp/')
 settings_path = os.path.join('./utils/', 'settings.json')
 rules_path = os.path.join('./utils/', 'rules.json')
