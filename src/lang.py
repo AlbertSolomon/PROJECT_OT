@@ -206,3 +206,8 @@ def get_ot_data() -> dict:
     with open(data_path, 'r') as ot_data_file:
         ot_data = json.load(ot_data_file)
     return ot_data
+
+def rules_settings() -> dict:
+    with open(rules_path, 'r') as rules_data_file:
+        rules_data = json.load(rules_data_file)
+    return rules_data
