@@ -9,7 +9,15 @@ workbook.active
 
 def sync_json_DATA():
     ot_data = get_ot_data()
-    print(rules_settings())
+    r_settings = rules_settings()
+
+    if r_settings.get('finished'):
+        print(r_settings.get('finished'))
+        print(type(r_settings.get('finished'))) 
+    else:
+        print(type(r_settings.get('finished')))
+        #bool(r_settings.get('finished'))
+        print('this is executing...', r_settings.get('finished'))
     
 
 sync_json_DATA()
