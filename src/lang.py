@@ -23,6 +23,10 @@ def read_settings() -> str:
         return location
     return location
 
+def wrt_rules(finished:bool = False, temporary_file:bool = True, prep_date:str = 'dd.mm.yyyy'):
+    pass
+
+
 # READING THE CURRENT OVERTIME MONTH ()
 overtime_month = read_settings().__getitem__('current_month')
 data_path = os.path.join('./data/', f'{overtime_month}.json')
