@@ -25,10 +25,6 @@ def read_settings(path:str) -> str:
 
 def wrt_rules(finished:bool = False, temporary_file:bool = True, prep_date:str = 'dd.mm.yyyy'):
     try:
-        #rules_r = read_settings(rules_path)
-        #rules_r['finished'] = finished
-        #rules_r['temporary_file'] = temporary_file
-        #rules_r['preparationDate'] = prep_date
         rules_data ={ "finished":finished, 
                       "temporary_file":temporary_file,
                       "preparationDate":prep_date
@@ -38,7 +34,6 @@ def wrt_rules(finished:bool = False, temporary_file:bool = True, prep_date:str =
         
     except Exception:
         print("file not found or something, you know the drill......")
-wrt_rules()
 
 # READING THE CURRENT OVERTIME MONTH ()
 overtime_month = read_settings(settings_path).__getitem__('current_month')
