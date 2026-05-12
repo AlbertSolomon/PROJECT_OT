@@ -9,31 +9,44 @@ settings_path = os.path.join('./utils/', 'settings.json')
 rules_path = os.path.join('./utils/', 'rules.json')
 
 
-def read_settings() -> str:
+def read_settings(path:str) -> str:
     try:
         with open(settings_path, "r") as current_month:
             location = json.load(current_month)
 
     except FileNotFoundError:
-        with open(settings_path, "w") as config_file:
-            json.dump(settings_path, config_file, indent=4)
-        with open(settings_path, "r") as config_location:
+        with open(path, "w") as config_file:
+            json.dump(path, config_file, indent=4)
+        with open(path, "r") as config_location:
             location = json.load(config_location)
 
         return location
     return location
 
 def wrt_rules(finished:bool = False, temporary_file:bool = True, prep_date:str = 'dd.mm.yyyy'):
-    pass
-
+    try:
+        #rules_r = read_settings(rules_path)
+        #rules_r['finished'] = finished
+        #rules_r['temporary_file'] = temporary_file
+        #rules_r['preparationDate'] = prep_date
+        rules_data ={ "finished":finished, 
+                      "temporary_file":temporary_file,
+                      "preparationDate":prep_date
+        }
+        with open(rules_path, 'w') as rules_data_w:
+            json.dump(rules_data, rules_data_w , indent=4)
+        
+    except Exception:
+        print("file not found or something, you know the drill......")
+wrt_rules()
 
 # READING THE CURRENT OVERTIME MONTH ()
-overtime_month = read_settings().__getitem__('current_month')
+overtime_month = read_settings(settings_path).__getitem__('current_month')
 data_path = os.path.join('./data/', f'{overtime_month}.json')
 
 def change_month(new_month):
     try:
-        util_settings_r = read_settings()
+        util_settings_r = read_settings(settings_path)
         util_settings_r['current_month'] = new_month
         with open(settings_path, "w") as util_settings_w:
             json.dump(util_settings_r, util_settings_w, indent=4)
